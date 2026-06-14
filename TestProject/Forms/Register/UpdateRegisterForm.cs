@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using TestProject.Dto;
 using TestProject.Models;
 using TestProject.Repositories;
 
@@ -14,37 +15,53 @@ namespace TestProject.Forms.Register
 {
     public partial class UpdateRegisterForm : Form
     {
-        public UpdateRegisterForm()
+        private readonly TcpClientService _tcpClientService;
+        public UpdateRegisterForm(TcpClientService tcpClientService)
         {
+            _tcpClientService = tcpClientService;
+
             InitializeComponent();
         }
 
         private async void UpdateRegisterForm_Load(object sender, EventArgs e)
         {
-            var dbCOntexr = new AppDbContext();
-            var registersRepository = new RegistersRepository(dbCOntexr);
-            var registers = await registersRepository.Get();
+            var registers = await _tcpClientService.GetAllRegistersAsync();
 
             comboBox1.DataSource = registers;
             comboBox1.DisplayMember = "Name";
+            //var dbCOntexr = new AppDbContext();
+            //var registersRepository = new RegistersRepository(dbCOntexr);
+            //var registers = await registersRepository.Get();
 
-            var selectedRegiser = (RegisterEntity)comboBox1.SelectedItem;
-            nameTextBox.Text = selectedRegiser.Name;
-            descriptionTextBox.Text = selectedRegiser.Description;
+            //comboBox1.DataSource = registers;
+            //comboBox1.DisplayMember = "Name";
+
+            //var selectedRegiser = (RegisterEntity)comboBox1.SelectedItem;
+            //nameTextBox.Text = selectedRegiser.Name;
+            //descriptionTextBox.Text = selectedRegiser.Description;
         }
 
         private async void button1_Click(object sender, EventArgs e)
         {
-            var dbContext = new AppDbContext();
-            var registersRepository = new RegistersRepository(dbContext);
-            var selectredRegister = (RegisterEntity)comboBox1.SelectedItem;
-            string name = nameTextBox.Text;
-            string description = descriptionTextBox.Text;
-            await registersRepository.Update(selectredRegister, name, description);
+            var register = (GetRegistersDto)comboBox1.SelectedItem;
+            var dto = new UpdateRegisterDto
+            {
+                Name = nameTextBox.Text,
+                Description = descriptionTextBox.Text,
+                Id = register.Id
+            };
+            await _tcpClientService.UpdateRegisterAsync(dto);
 
-            var registers = await registersRepository.Get();
-            comboBox1.DataSource = registers;
+            var registers = await _tcpClientService.GetAllRegistersAsync();
+;            comboBox1.DataSource = registers;
             comboBox1.DisplayMember = "Name";
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var register = (GetRegistersDto)comboBox1.SelectedItem;
+            nameTextBox.Text = register.Name;
+            descriptionTextBox.Text = register.Description;
         }
     }
 }

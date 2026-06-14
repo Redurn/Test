@@ -6,41 +6,41 @@ using TestProject.Models;
 
 namespace TestProject.Repositories;
 
-public class InterfacesRepository
+public class InterfacesRepository : IInterfacesRepository
 {
     private readonly AppDbContext _dbContext;
+
     public InterfacesRepository(AppDbContext dbContext)
     {
         _dbContext = dbContext;
     }
 
-    public async Task<List<InterfaceEntity>> Get()
+    public async Task<List<InterfaceEntity>> GetAll()
     {
         return await _dbContext.Interfaces
             .AsNoTracking()
             .ToListAsync();
     }
-    public async Task Add(string name, string description)
+
+    public async Task<InterfaceEntity?> GetById(Guid id)
     {
-        var interfaceEntity = new InterfaceEntity
-        {
-            Name = name,
-            Description = description,
-            EditingDate = DateTime.Now
-        };
+        return await _dbContext.Interfaces.FirstOrDefaultAsync(x => x.Id == id);
+    }
+
+    public async Task Create(InterfaceEntity interfaceEntity)
+    {
         await _dbContext.AddAsync(interfaceEntity);
         await _dbContext.SaveChangesAsync();
     }
 
-    public async Task Update(InterfaceEntity interfaceEntity, string name, string ndescription)
+    public async Task Update(Guid id, string name, string description)
     {
-        interfaceEntity.Name = name;
+        var selectedInterface = await _dbContext.Interfaces.FirstOrDefaultAsync(x => x.Id == id);
 
-        interfaceEntity.Description = ndescription;
-
-        interfaceEntity.EditingDate = DateTime.Now;
-
-        _dbContext.Interfaces.Update(interfaceEntity);
+        selectedInterface.Name = name;
+        selectedInterface.Description = description;
+        selectedInterface.EditingDate = DateTime.Now;
+        _dbContext.Update(selectedInterface);
         await _dbContext.SaveChangesAsync();
     }
 

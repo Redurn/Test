@@ -1,6 +1,6 @@
 ﻿namespace TestProject.Forms
 {
-    partial class AddDeviceForm
+    partial class CreateDeviceForm
     {
         /// <summary>
         /// Required designer variable.

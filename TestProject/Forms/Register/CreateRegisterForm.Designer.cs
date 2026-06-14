@@ -1,6 +1,6 @@
 ﻿namespace TestProject.Forms.Register
 {
-    partial class AddRegisterForm
+    partial class CreateRegisterForm
     {
         /// <summary>
         /// Required designer variable.

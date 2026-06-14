@@ -1,4 +1,4 @@
-﻿
+﻿using TestProject.Dto;
 using TestProject.Models;
 using TestProject.Repositories;
 
@@ -6,19 +6,28 @@ namespace TestProject.Forms;
 
 public partial class UpdateInterfaceForm : Form
 {
-    public UpdateInterfaceForm()
+
+    private readonly TcpClientService _tcpClientService;
+
+    public UpdateInterfaceForm(TcpClientService tcpClientService)
     {
+        _tcpClientService = tcpClientService;
+
         InitializeComponent();
     }
 
     private async void button1_Click(object sender, EventArgs e)
     {
-        var dbContext = new AppDbContext();
-        var interfacesRepository = new InterfacesRepository(dbContext);
-        var selectedInterfae = (InterfaceEntity)comboBox1.SelectedItem;
-        await interfacesRepository.Update(selectedInterfae, textBox1.Text, textBox2.Text);
+        var selectedInterface = (GetInterfaceDto)comboBox1.SelectedItem;
+        var dto = new UpdateInterfaceDto
+        {
+            Id = selectedInterface.Id,
+            Name = textBox1.Text,
+            Description = textBox2.Text,
+        };
+        await _tcpClientService.UpdateInterfaceAsync(dto);
 
-        var interfaces = await interfacesRepository.Get();
+        var interfaces = await _tcpClientService.GetInterfacesAsync();
 
         comboBox1.DataSource = interfaces;
         comboBox1.DisplayMember = "Name";
@@ -26,19 +35,17 @@ public partial class UpdateInterfaceForm : Form
 
     private async void UpdateInterfaceForm_Load(object sender, EventArgs e)
     {
-        var dbContext = new AppDbContext();
-        var interfacesRepository = new InterfacesRepository(dbContext);
-
-        var interfaces = await interfacesRepository.Get();
+        var interfaces = await _tcpClientService.GetInterfacesAsync();
 
         comboBox1.DataSource = interfaces;
         comboBox1.DisplayMember = "Name";
     }
 
-    private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+    private async void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
     {
-        var selected = (InterfaceEntity)comboBox1.SelectedItem;
-        textBox1.Text = selected.Name;
-        textBox2.Text = selected.Description;
+        var selectedInterface = (GetInterfaceDto)comboBox1.SelectedItem;
+
+        textBox1.Text = selectedInterface.Name;
+        textBox2.Text = selectedInterface.Description;
     }
 }

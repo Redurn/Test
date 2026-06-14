@@ -63,6 +63,13 @@
             label13 = new Label();
             label14 = new Label();
             button6 = new Button();
+            changeStatusButton = new Button();
+            statusDeviceTextBox = new TextBox();
+            label15 = new Label();
+            comboBox4 = new ComboBox();
+            panel1 = new Panel();
+            button7 = new Button();
+            button8 = new Button();
             button4 = new Button();
             SuspendLayout();
             // 
@@ -380,11 +387,81 @@
             button6.UseVisualStyleBackColor = true;
             button6.Click += button6_Click_1;
             // 
+            // changeStatusButton
+            // 
+            changeStatusButton.Location = new Point(231, 537);
+            changeStatusButton.Name = "changeStatusButton";
+            changeStatusButton.Size = new Size(177, 71);
+            changeStatusButton.TabIndex = 36;
+            changeStatusButton.Text = "Изменить статус";
+            changeStatusButton.UseVisualStyleBackColor = true;
+            changeStatusButton.Click += button7_Click;
+            // 
+            // statusDeviceTextBox
+            // 
+            statusDeviceTextBox.Location = new Point(12, 599);
+            statusDeviceTextBox.Name = "statusDeviceTextBox";
+            statusDeviceTextBox.ReadOnly = true;
+            statusDeviceTextBox.Size = new Size(196, 31);
+            statusDeviceTextBox.TabIndex = 37;
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Location = new Point(15, 571);
+            label15.Name = "label15";
+            label15.Size = new Size(158, 25);
+            label15.TabIndex = 38;
+            label15.Text = "Статус устройства";
+            // 
+            // comboBox4
+            // 
+            comboBox4.FormattingEnabled = true;
+            comboBox4.Location = new Point(553, 287);
+            comboBox4.Name = "comboBox4";
+            comboBox4.Size = new Size(182, 33);
+            comboBox4.TabIndex = 39;
+            // 
+            // panel1
+            // 
+            panel1.Location = new Point(795, 12);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(550, 618);
+            panel1.TabIndex = 40;
+            panel1.Paint += panel1_Paint;
+            // 
+            // button7
+            // 
+            button7.Location = new Point(471, 438);
+            button7.Name = "button7";
+            button7.Size = new Size(149, 68);
+            button7.TabIndex = 41;
+            button7.Text = "button7";
+            button7.UseVisualStyleBackColor = true;
+            button7.Click += button7_Click_1;
+            // 
+            // button8
+            // 
+            button8.Location = new Point(626, 438);
+            button8.Name = "button8";
+            button8.Size = new Size(134, 68);
+            button8.TabIndex = 42;
+            button8.Text = "button8";
+            button8.UseVisualStyleBackColor = true;
+            button8.Click += button8_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1519, 586);
+            ClientSize = new Size(1519, 661);
+            Controls.Add(button8);
+            Controls.Add(button7);
+            Controls.Add(panel1);
+            Controls.Add(comboBox4);
+            Controls.Add(label15);
+            Controls.Add(statusDeviceTextBox);
+            Controls.Add(changeStatusButton);
             Controls.Add(button6);
             Controls.Add(label14);
             Controls.Add(label13);
@@ -463,5 +540,12 @@
         private Label label13;
         private Label label14;
         private Button button6;
+        private Button changeStatusButton;
+        private TextBox statusDeviceTextBox;
+        private Label label15;
+        private ComboBox comboBox4;
+        private Panel panel1;
+        private Button button7;
+        private Button button8;
     }
 }

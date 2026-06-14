@@ -5,39 +5,40 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using TestProject.Dto;
 using TestProject.Models;
 using TestProject.Repositories;
 
 namespace TestProject.Forms
 {
-    public partial class AddDeviceForm : Form
+    public partial class CreateDeviceForm : Form
     {
-        public AddDeviceForm()
+        private readonly TcpClientService _tcpClientService;
+        public CreateDeviceForm(TcpClientService tcpCLientService)
         {
+            _tcpClientService = tcpCLientService;
+
             InitializeComponent();
         }
 
         private async void AddDeviceForm_Load(object sender, EventArgs e)
         {
-            var dbContext = new AppDbContext();
-            var interfacesRepository = new InterfacesRepository(dbContext);
-
-            var interfaces = await interfacesRepository.Get();
+            var interfaces = await _tcpClientService.GetInterfacesAsync();
 
             comboBox1.DataSource = interfaces;
             comboBox1.DisplayMember = "Name";
+
             string[] figures = new string[3] { "Круг", "Квадрат", "Треугольник" };
             string[] colors = new string[3] { "Красный", "Синий", "Зелёный" };
+
             typeComboBox.DataSource = figures;
             colorComboBox.DataSource = colors;
         }
 
         private async void button1_Click(object sender, EventArgs e)
         {
-            var dbCOntext = new AppDbContext();
-            var interfaceEntity = (InterfaceEntity)comboBox1.SelectedItem;
-            var interfaceId = interfaceEntity.Id;
-            var devicesRepository = new DevicesRepository(dbCOntext);
+            var selectedInterface = (GetInterfaceDto)comboBox1.SelectedItem;
+            var interfaceId = selectedInterface.Id;
             try
             {
                 string name = nameTextBox.Text;
@@ -51,9 +52,20 @@ namespace TestProject.Forms
                 }
                 int posX = Convert.ToInt32(posXTextBox.Text);
                 int posY = Convert.ToInt32(posYTextBox.Text);
-                await devicesRepository.Add(interfaceId, name, description, figureType, size, posX, posY, color);
+                var dto = new CreateDeviceDto
+                {
+                    Name = name,
+                    Description = description,
+                    InterfaceId = interfaceId,
+                    FigureType = figureType,
+                    Size = size,
+                    PosX = posX,
+                    PosY = posY,
+                    Color = color
+                };
+                await _tcpClientService.CreateDeviceAsync(dto);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("заданы неверные параметры");
             }

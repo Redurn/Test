@@ -6,7 +6,7 @@ using TestProject.Models;
 
 namespace TestProject.Repositories;
 
-internal class DevicesRepository
+public class DevicesRepository : IDevicesRepository
 {
     private readonly AppDbContext _dbContext;
 
@@ -15,42 +15,27 @@ internal class DevicesRepository
         _dbContext = dbContext;
     }
 
-    public async Task<List<DeviceEntity>> Get()
+    public async Task<List<DeviceEntity>> GetAll()
     {
         return await _dbContext.Devices
             .AsNoTracking()
             .ToListAsync();
     }
 
-    public async Task<List<DeviceEntity>> GetByInterface(Guid interfaceId)
+    public async Task<List<DeviceEntity>> GetByInterfaceId(Guid interfaceId)
     {
         return await _dbContext.Devices.Where(d => d.InterfaceId == interfaceId).ToListAsync();
     }
-    public async Task Add(Guid interfaceId, string name, string description, string figureType, int size,
-                          int posX, int posY, string color) 
-                          
+    public async Task Create(DeviceEntity deviceEntity)               
     {
-        var deviceEntity = new DeviceEntity
-        {
-            Name = name,
-            Description = description,
-            InterfaceId = interfaceId,
-            FigureType = figureType,
-            Size = size,
-            PosX = posX,
-            PosY = posY,
-            Color = color,
-            IsEnabled = false,
-            EditingDate = DateTime.Now
-        };
         await _dbContext.AddAsync(deviceEntity);
         await _dbContext.SaveChangesAsync();
-
     }
 
-    public async Task Update(DeviceEntity deviceEntity, string name, string description, string figureType, int size,
+    public async Task Update(Guid id, string name, string description, string figureType, int size,
                              int posX, int posY, string color)
     {
+        var deviceEntity = await _dbContext.Devices.FirstOrDefaultAsync(d => d.Id == id);
         deviceEntity.Name = name;
         deviceEntity.Description = description;
         deviceEntity.FigureType = figureType;

@@ -1,6 +1,6 @@
 ﻿namespace TestProject
 {
-    partial class AddInterfaceForm
+    partial class CreateInterfaceForm
     {
         /// <summary>
         /// Required designer variable.

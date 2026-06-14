@@ -1,3 +1,4 @@
 <Solution>
+  <Project Path="TcpServerApp/TcpServerApp.csproj" Id="4d590176-3125-469b-afb2-cc9df3451fdf" />
   <Project Path="TestProject/TestProject.csproj" />
 </Solution>
