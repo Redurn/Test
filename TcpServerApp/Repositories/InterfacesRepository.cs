@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using TcpServerApp;
 using TestProject.Models;
 
 namespace TestProject.Repositories;
@@ -39,8 +40,10 @@ public class InterfacesRepository : IInterfacesRepository
         await _dbContext.SaveChangesAsync();
     }
 
-    public async Task Delete(InterfaceEntity interfaceEntity)
+    public async Task Delete(Guid id)
     {
+        var interfaceEntity = await _dbContext.Interfaces.FindAsync(id);
+
         _dbContext.Interfaces.Remove(interfaceEntity);
         await _dbContext.SaveChangesAsync();
     }

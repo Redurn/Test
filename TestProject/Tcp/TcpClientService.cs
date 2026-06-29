@@ -6,9 +6,8 @@ using System.Text;
 using System.Text.Json;
 using TcpServerApp.Dto;
 using TestProject.Dto;
-using TestProject.Tcp;
 
-namespace TestProject;
+namespace TestProject.Tcp;
 
 public class TcpClientService
 {
@@ -60,11 +59,6 @@ public class TcpClientService
 
         int bytesRead = await stream.ReadAsync(buffer);
 
-        if (bytesRead == 0)
-        {
-            throw new Exception("Сервер разорвал соединение до отправки данных. Проверьте логи сервера!");
-        }
-
         var responseJson = Encoding.UTF8.GetString(buffer, 0, bytesRead);
 
         var interfaces = JsonSerializer.Deserialize<List<GetInterfaceDto>>
@@ -109,6 +103,27 @@ public class TcpClientService
         {
             Command = "UPDATE_INTERFACE",
             Data = JsonSerializer.Serialize(dto)
+        };
+
+        var json = JsonSerializer.Serialize(request);
+
+        using TcpClient client = new TcpClient();
+
+        await client.ConnectAsync("127.0.0.1", 5000);
+
+        using NetworkStream stream = client.GetStream();
+
+        var bytes = Encoding.UTF8.GetBytes(json);
+
+        await stream.WriteAsync(bytes);
+    }
+
+    public async Task DeleteInterfaceAsync(Guid id)
+    {
+        var request = new TcpRequest
+        {
+            Command = "DELETE_INTERFACE",
+            Data = JsonSerializer.Serialize(id)
         };
 
         var json = JsonSerializer.Serialize(request);
@@ -284,6 +299,27 @@ public class TcpClientService
         return devices;
     }
 
+    public async Task DeleteDeviceAsync(Guid id)
+    {
+        var request = new TcpRequest
+        {
+            Command = "DELETE_DEVICE",
+            Data = JsonSerializer.Serialize(id)
+        };
+
+        var json = JsonSerializer.Serialize(request);
+
+        using TcpClient client = new TcpClient();
+
+        await client.ConnectAsync("127.0.0.1", 5000);
+
+        using NetworkStream stream = client.GetStream();
+
+        var bytes = Encoding.UTF8.GetBytes(json);
+
+        await stream.WriteAsync(bytes);
+    }
+
     // Регистры
 
     public async Task<List<GetRegistersDto>> GetByDeviceIdAsync(Guid deviceId)
@@ -403,6 +439,27 @@ public class TcpClientService
         {
             Command = "UPDATE_REGISTER",
             Data = JsonSerializer.Serialize(dto)
+        };
+
+        var json = JsonSerializer.Serialize(request);
+
+        using TcpClient client = new TcpClient();
+
+        await client.ConnectAsync("127.0.0.1", 5000);
+
+        using NetworkStream stream = client.GetStream();
+
+        var bytes = Encoding.UTF8.GetBytes(json);
+
+        await stream.WriteAsync(bytes);
+    }
+
+    public async Task DeleteRegisterAsync(Guid id)
+    {
+        var request = new TcpRequest
+        {
+            Command = "DELETE_REGISTER",
+            Data = JsonSerializer.Serialize(id)
         };
 
         var json = JsonSerializer.Serialize(request);

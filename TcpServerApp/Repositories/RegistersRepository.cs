@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using TcpServerApp;
 using TestProject.Models;
 
 namespace TestProject.Repositories;
@@ -46,6 +47,14 @@ internal class RegistersRepository : IRegistersRepository
     public async Task Update(RegisterEntity registerEntity)
     {
         _dbContext.Update(registerEntity);
+        await _dbContext.SaveChangesAsync();
+    }
+
+    public async Task Delete(Guid id)
+    {
+        var registerEntity = await _dbContext.Registers.FindAsync(id);
+
+        _dbContext.Registers.Remove(registerEntity);
         await _dbContext.SaveChangesAsync();
     }
 }

@@ -116,6 +116,13 @@ public class TcpServer
                         await stream.WriteAsync(responseBytes);
                     }
 
+                    else if (request.Command == "DELETE_INTERFACE")
+                    {
+                        var id = JsonSerializer.Deserialize<Guid>(request.Data);
+
+                        await interfaceService.DeleteInterfaceAsync(id);
+                    }
+
                     // Устройства
 
                     else if (request.Command == "GET_BY_INTERFACE_ID")
@@ -176,6 +183,13 @@ public class TcpServer
                         await stream.WriteAsync(responseBytes);
                     }
 
+                    else if (request.Command == "DELETE_DEVICE")
+                    {
+                        var deviceId = JsonSerializer.Deserialize<Guid>(request.Data);
+
+                        await deviceService.DeleteDeviceAsync(deviceId);
+                    }
+
                     // Регистры
 
                     else if (request.Command == "GET_BY_DEVICE_ID")
@@ -227,6 +241,13 @@ public class TcpServer
                         await registerService.UpdateRegisterAsync(dto);
                     }
 
+                    else if (request.Command == "DELETE_REGISTER")
+                    {
+                        var registerId = JsonSerializer.Deserialize<Guid>(request.Data);
+
+                        await registerService.DeleteRegisterAsync(registerId);
+                    }
+
                     // Значения регистров
 
                     else if (request.Command == "CREATE_REGISTER_VALUES")
@@ -235,8 +256,6 @@ public class TcpServer
 
                         await registerValueService.CreateRegisterValuesAsync(dto);
                     }
-
-                    // Обработка request...
                 }
 
                 

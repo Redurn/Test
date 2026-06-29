@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using TcpServerApp;
 using TestProject.Models;
 
 namespace TestProject.Repositories;
@@ -45,6 +46,14 @@ internal class DevicesRepository : IDevicesRepository
     public async Task Update(DeviceEntity deviceEntity)
     {
         _dbContext.Update(deviceEntity);
+        await _dbContext.SaveChangesAsync();
+    }
+
+    public async Task Delete(Guid id)
+    {
+        var deviceEntity = await _dbContext.Devices.FindAsync(id);
+
+        _dbContext.Devices.Remove(deviceEntity);
         await _dbContext.SaveChangesAsync();
     }
 }

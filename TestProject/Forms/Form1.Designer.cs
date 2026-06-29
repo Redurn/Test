@@ -66,16 +66,19 @@
             changeStatusButton = new Button();
             statusDeviceTextBox = new TextBox();
             label15 = new Label();
-            comboBox4 = new ComboBox();
             panel1 = new Panel();
             button7 = new Button();
             button8 = new Button();
+            button9 = new Button();
+            button10 = new Button();
+            button11 = new Button();
+            tableLayoutPanel1 = new TableLayoutPanel();
             button4 = new Button();
             SuspendLayout();
             // 
             // button4
             // 
-            button4.Location = new Point(231, 225);
+            button4.Location = new Point(231, 302);
             button4.Name = "button4";
             button4.Size = new Size(180, 71);
             button4.TabIndex = 10;
@@ -88,7 +91,7 @@
             textBox1.Location = new Point(12, 101);
             textBox1.Name = "textBox1";
             textBox1.ReadOnly = true;
-            textBox1.Size = new Size(192, 31);
+            textBox1.Size = new Size(196, 31);
             textBox1.TabIndex = 0;
             textBox1.TextChanged += textBox1_TextChanged;
             // 
@@ -97,7 +100,7 @@
             textBox2.Location = new Point(12, 163);
             textBox2.Name = "textBox2";
             textBox2.ReadOnly = true;
-            textBox2.Size = new Size(192, 31);
+            textBox2.Size = new Size(196, 31);
             textBox2.TabIndex = 1;
             textBox2.TextChanged += textBox2_TextChanged;
             // 
@@ -126,7 +129,7 @@
             comboBox1.FormattingEnabled = true;
             comboBox1.Location = new Point(12, 37);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(192, 33);
+            comboBox1.Size = new Size(196, 33);
             comboBox1.TabIndex = 5;
             comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
@@ -170,24 +173,24 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(12, 197);
+            label4.Location = new Point(12, 274);
             label4.Name = "label4";
-            label4.Size = new Size(103, 25);
+            label4.Size = new Size(105, 25);
             label4.TabIndex = 11;
-            label4.Text = "Устройства";
+            label4.Text = "Устройство";
             // 
             // comboBox2
             // 
             comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(12, 225);
+            comboBox2.Location = new Point(12, 302);
             comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(192, 33);
+            comboBox2.Size = new Size(196, 33);
             comboBox2.TabIndex = 12;
             comboBox2.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
             // 
             // button5
             // 
-            button5.Location = new Point(231, 302);
+            button5.Location = new Point(231, 379);
             button5.Name = "button5";
             button5.Size = new Size(180, 71);
             button5.TabIndex = 13;
@@ -197,7 +200,7 @@
             // 
             // posXDeviceTextBox
             // 
-            posXDeviceTextBox.Location = new Point(231, 413);
+            posXDeviceTextBox.Location = new Point(231, 490);
             posXDeviceTextBox.Name = "posXDeviceTextBox";
             posXDeviceTextBox.ReadOnly = true;
             posXDeviceTextBox.Size = new Size(180, 31);
@@ -205,7 +208,7 @@
             // 
             // posYDeviceTextBox
             // 
-            posYDeviceTextBox.Location = new Point(231, 475);
+            posYDeviceTextBox.Location = new Point(231, 552);
             posYDeviceTextBox.Name = "posYDeviceTextBox";
             posYDeviceTextBox.ReadOnly = true;
             posYDeviceTextBox.Size = new Size(177, 31);
@@ -213,7 +216,7 @@
             // 
             // editingDateDeviceTextBox
             // 
-            editingDateDeviceTextBox.Location = new Point(12, 537);
+            editingDateDeviceTextBox.Location = new Point(12, 614);
             editingDateDeviceTextBox.Name = "editingDateDeviceTextBox";
             editingDateDeviceTextBox.ReadOnly = true;
             editingDateDeviceTextBox.Size = new Size(196, 31);
@@ -221,7 +224,7 @@
             // 
             // sizeDeviceTextBox
             // 
-            sizeDeviceTextBox.Location = new Point(12, 475);
+            sizeDeviceTextBox.Location = new Point(12, 552);
             sizeDeviceTextBox.Name = "sizeDeviceTextBox";
             sizeDeviceTextBox.ReadOnly = true;
             sizeDeviceTextBox.Size = new Size(196, 31);
@@ -229,7 +232,7 @@
             // 
             // colorDeviceTextBox
             // 
-            colorDeviceTextBox.Location = new Point(12, 413);
+            colorDeviceTextBox.Location = new Point(12, 490);
             colorDeviceTextBox.Name = "colorDeviceTextBox";
             colorDeviceTextBox.ReadOnly = true;
             colorDeviceTextBox.Size = new Size(196, 31);
@@ -237,7 +240,7 @@
             // 
             // typeDeviceTextBox
             // 
-            typeDeviceTextBox.Location = new Point(12, 351);
+            typeDeviceTextBox.Location = new Point(12, 428);
             typeDeviceTextBox.Name = "typeDeviceTextBox";
             typeDeviceTextBox.ReadOnly = true;
             typeDeviceTextBox.Size = new Size(196, 31);
@@ -245,7 +248,7 @@
             // 
             // descriptionDeviceTextBox
             // 
-            descriptionDeviceTextBox.Location = new Point(12, 289);
+            descriptionDeviceTextBox.Location = new Point(12, 366);
             descriptionDeviceTextBox.Name = "descriptionDeviceTextBox";
             descriptionDeviceTextBox.ReadOnly = true;
             descriptionDeviceTextBox.Size = new Size(196, 31);
@@ -254,7 +257,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(12, 261);
+            label5.Location = new Point(12, 338);
             label5.Name = "label5";
             label5.Size = new Size(187, 25);
             label5.TabIndex = 21;
@@ -263,7 +266,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(12, 323);
+            label6.Location = new Point(12, 400);
             label6.Name = "label6";
             label6.Size = new Size(108, 25);
             label6.TabIndex = 22;
@@ -272,16 +275,17 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(12, 385);
+            label7.Location = new Point(12, 462);
             label7.Name = "label7";
             label7.Size = new Size(51, 25);
             label7.TabIndex = 23;
             label7.Text = "Цвет";
+            label7.Click += label7_Click;
             // 
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(12, 447);
+            label8.Location = new Point(12, 524);
             label8.Name = "label8";
             label8.Size = new Size(72, 25);
             label8.TabIndex = 24;
@@ -290,7 +294,7 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(12, 509);
+            label9.Location = new Point(12, 586);
             label9.Name = "label9";
             label9.Size = new Size(189, 25);
             label9.TabIndex = 25;
@@ -299,7 +303,7 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(231, 385);
+            label10.Location = new Point(231, 462);
             label10.Name = "label10";
             label10.Size = new Size(126, 25);
             label10.TabIndex = 26;
@@ -309,7 +313,7 @@
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(231, 447);
+            label11.Location = new Point(231, 524);
             label11.Name = "label11";
             label11.Size = new Size(125, 25);
             label11.TabIndex = 27;
@@ -355,9 +359,9 @@
             label12.AutoSize = true;
             label12.Location = new Point(414, 9);
             label12.Name = "label12";
-            label12.Size = new Size(87, 25);
+            label12.Size = new Size(74, 25);
             label12.TabIndex = 32;
-            label12.Text = "Регистры";
+            label12.Text = "Регистр";
             // 
             // label13
             // 
@@ -389,7 +393,7 @@
             // 
             // changeStatusButton
             // 
-            changeStatusButton.Location = new Point(231, 537);
+            changeStatusButton.Location = new Point(231, 614);
             changeStatusButton.Name = "changeStatusButton";
             changeStatusButton.Size = new Size(177, 71);
             changeStatusButton.TabIndex = 36;
@@ -399,7 +403,7 @@
             // 
             // statusDeviceTextBox
             // 
-            statusDeviceTextBox.Location = new Point(12, 599);
+            statusDeviceTextBox.Location = new Point(12, 676);
             statusDeviceTextBox.Name = "statusDeviceTextBox";
             statusDeviceTextBox.ReadOnly = true;
             statusDeviceTextBox.Size = new Size(196, 31);
@@ -408,19 +412,11 @@
             // label15
             // 
             label15.AutoSize = true;
-            label15.Location = new Point(15, 571);
+            label15.Location = new Point(12, 648);
             label15.Name = "label15";
             label15.Size = new Size(158, 25);
             label15.TabIndex = 38;
             label15.Text = "Статус устройства";
-            // 
-            // comboBox4
-            // 
-            comboBox4.FormattingEnabled = true;
-            comboBox4.Location = new Point(553, 287);
-            comboBox4.Name = "comboBox4";
-            comboBox4.Size = new Size(182, 33);
-            comboBox4.TabIndex = 39;
             // 
             // panel1
             // 
@@ -436,29 +432,80 @@
             button7.Name = "button7";
             button7.Size = new Size(149, 68);
             button7.TabIndex = 41;
-            button7.Text = "button7";
+            button7.Text = "Включить генератор";
             button7.UseVisualStyleBackColor = true;
             button7.Click += button7_Click_1;
             // 
             // button8
             // 
+            button8.Enabled = false;
             button8.Location = new Point(626, 438);
             button8.Name = "button8";
             button8.Size = new Size(134, 68);
             button8.TabIndex = 42;
-            button8.Text = "button8";
+            button8.Text = "Остановить генератор";
             button8.UseVisualStyleBackColor = true;
             button8.Click += button8_Click;
+            // 
+            // button9
+            // 
+            button9.BackColor = Color.Red;
+            button9.Location = new Point(9, 200);
+            button9.Name = "button9";
+            button9.Size = new Size(199, 68);
+            button9.TabIndex = 43;
+            button9.Text = "Удалить интерфейс";
+            button9.UseVisualStyleBackColor = false;
+            button9.Click += button9_Click;
+            // 
+            // button10
+            // 
+            button10.BackColor = Color.Red;
+            button10.Location = new Point(9, 713);
+            button10.Name = "button10";
+            button10.Size = new Size(199, 68);
+            button10.TabIndex = 44;
+            button10.Text = "Удалить устройство";
+            button10.UseVisualStyleBackColor = false;
+            button10.Click += button10_Click;
+            // 
+            // button11
+            // 
+            button11.BackColor = Color.Red;
+            button11.ForeColor = SystemColors.ControlText;
+            button11.Location = new Point(414, 200);
+            button11.Name = "button11";
+            button11.Size = new Size(192, 68);
+            button11.TabIndex = 45;
+            button11.Text = "Удалить регистр";
+            button11.UseVisualStyleBackColor = false;
+            button11.Click += button11_Click;
+            // 
+            // tableLayoutPanel1
+            // 
+            tableLayoutPanel1.ColumnCount = 2;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.Location = new Point(446, 586);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 2;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.Size = new Size(300, 150);
+            tableLayoutPanel1.TabIndex = 46;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1519, 661);
+            ClientSize = new Size(1519, 812);
+            Controls.Add(tableLayoutPanel1);
+            Controls.Add(button11);
+            Controls.Add(button10);
+            Controls.Add(button9);
             Controls.Add(button8);
             Controls.Add(button7);
             Controls.Add(panel1);
-            Controls.Add(comboBox4);
             Controls.Add(label15);
             Controls.Add(statusDeviceTextBox);
             Controls.Add(changeStatusButton);
@@ -498,7 +545,7 @@
             Controls.Add(textBox2);
             Controls.Add(textBox1);
             Name = "Form1";
-            Text = "Form1";
+            Text = "TestProject";
             Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();
@@ -543,9 +590,12 @@
         private Button changeStatusButton;
         private TextBox statusDeviceTextBox;
         private Label label15;
-        private ComboBox comboBox4;
         private Panel panel1;
         private Button button7;
         private Button button8;
+        private Button button9;
+        private Button button10;
+        private Button button11;
+        private TableLayoutPanel tableLayoutPanel1;
     }
 }

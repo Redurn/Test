@@ -25,11 +25,13 @@ public interface IInterfacesRepository
 {
     Task<List<InterfaceEntity>> GetAll();
 
-    Task<InterfaceEntity> GetById(Guid id);
+    Task<InterfaceEntity?> GetById(Guid id);
 
     Task Create(InterfaceEntity interfaceEntity);
 
     Task Update(InterfaceEntity interfaceEntity);
+
+    Task Delete(Guid id);
 }
 
 public interface IInterfaceService
@@ -41,5 +43,7 @@ public interface IInterfaceService
     Task<List<GetInterfaceDto>> GetAllInterfacesAsync();
 
     Task<GetInterfaceDto> GetInterfaceByIdAsync(Guid id);
+
+    Task DeleteInterfaceAsync(Guid id);
 }
 

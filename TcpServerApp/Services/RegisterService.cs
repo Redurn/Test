@@ -74,4 +74,9 @@ internal class RegisterService : IRegisterService
 
         await _registersRepository.Update(registerEntity);
     }
+
+    public async Task DeleteRegisterAsync(Guid id)
+    {
+        await _registersRepository.Delete(id);
+    }
 }

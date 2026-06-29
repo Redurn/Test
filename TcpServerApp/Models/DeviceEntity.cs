@@ -52,6 +52,8 @@ public interface IDevicesRepository
     Task<List<DeviceEntity>> GetAllEnabled();
 
     Task<DeviceEntity> GetById(Guid id);
+
+    Task Delete(Guid id);
 }
 
 public interface IDeviceService
@@ -67,4 +69,6 @@ public interface IDeviceService
     Task<List<GetDeviceDto>> GetAllDevicesAsync();
 
     Task<List<GetDeviceDto>> GetAllEnabledDevicesAsync();
+
+    Task DeleteDeviceAsync(Guid id);
 }

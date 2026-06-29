@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using TestProject.Dto;
 using TestProject.Models;
 using TestProject.Repositories;
+using TestProject.Tcp;
 
 namespace TestProject.Forms.Register
 {

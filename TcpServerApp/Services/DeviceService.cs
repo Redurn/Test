@@ -111,4 +111,9 @@ internal class DeviceService : IDeviceService
             IsEnabled = x.IsEnabled,
         }).ToList();
     }
+
+    public async Task DeleteDeviceAsync(Guid id)
+    {
+        await _devicesRepository.Delete(id);
+    }
 }

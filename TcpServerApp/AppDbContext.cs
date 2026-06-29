@@ -3,7 +3,7 @@ using TestProject.Configurations;
 using TestProject.Models;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
-namespace TestProject;
+namespace TcpServerApp;
 
 public class AppDbContext : DbContext
 {
@@ -12,13 +12,6 @@ public class AppDbContext : DbContext
     public DbSet<RegisterEntity> Registers { get; set; }
     public DbSet<RegisterValueEntity> RegisterValues { get; set; }
     public DbSet<LogEntity> Logs { get; set; }
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TestProject.db");
-
-        optionsBuilder.UseSqlite($"Data Source={path}");
-    }
 
     public AppDbContext(DbContextOptions<AppDbContext> options)
         : base(options)

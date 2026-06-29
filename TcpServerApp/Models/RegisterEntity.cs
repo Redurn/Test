@@ -30,6 +30,7 @@ public interface IRegistersRepository
     Task<RegisterEntity> GetById(Guid id);
     Task<List<RegisterEntity>> GetAll();
     Task<List<RegisterEntity>> GetRegistersOfEnabledDevices();
+    Task Delete(Guid id);
 }
 
 public interface IRegisterService
@@ -39,4 +40,5 @@ public interface IRegisterService
     Task UpdateRegisterAsync(UpdateRegisterDto dto);
     Task<List<GetRegistersDto>> GetAllRegistersAsync();
     Task<List<GetRegisterIdDto>> GetRegistersOfEnabledDevicesAsync();
+    Task DeleteRegisterAsync(Guid id);
 }

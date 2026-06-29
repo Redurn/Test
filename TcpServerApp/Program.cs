@@ -1,9 +1,9 @@
 ﻿using Core.Tcp;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using TcpServerApp;
 using TcpServerApp.Repositories;
 using TcpServerApp.Services;
-using TestProject;
 using TestProject.Models;
 using TestProject.Repositories;
 using TestProject.Services;

@@ -8,6 +8,7 @@ using TestProject.Forms.Register;
 using TestProject.Models;
 using TestProject.Repositories;
 using TestProject.Services;
+using TestProject.Tcp;
 
 namespace TestProject
 {
@@ -43,10 +44,6 @@ namespace TestProject
 
             comboBox1.DataSource = interfaces;
             comboBox1.DisplayMember = "Name";
-
-            var registers = await _tcpClientService.GetRegistersOfEnabledDevicesAsync();
-            comboBox4.DataSource = registers;
-            comboBox4.DisplayMember = "Id";
 
             await LoadEnabledDevices();
             panel1.Invalidate();
@@ -294,6 +291,8 @@ namespace TestProject
             Random rnd = new Random();
             _generatorStart = true;
             List<CreateRegisterValueDto> registerValues = new List<CreateRegisterValueDto>();
+            button8.Enabled = true;
+            button7.Enabled = false;
             try
             {
                 while (_generatorStart)
@@ -327,6 +326,43 @@ namespace TestProject
         private void button8_Click(object sender, EventArgs e)
         {
             _generatorStart = false;
+            button7.Enabled = true;
+            button8.Enabled = false;
+        }
+
+        private async void button9_Click(object sender, EventArgs e)
+        {
+            var selectedInterface = (GetInterfaceDto)comboBox1.SelectedItem;
+            var interfaceId = selectedInterface.Id;
+
+            await _tcpClientService.DeleteInterfaceAsync(interfaceId);
+
+            RefreshForm();
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void button10_Click(object sender, EventArgs e)
+        {
+            var selectedDevice = (GetDeviceDto)comboBox2.SelectedItem;
+            var deviceId = selectedDevice.Id;
+
+            await _tcpClientService.DeleteDeviceAsync(deviceId);
+
+            RefreshForm();
+        }
+
+        private async void button11_Click(object sender, EventArgs e)
+        {
+            var selectedRegister = (GetRegistersDto)comboBox3.SelectedItem;
+            var registerId = selectedRegister.Id;
+
+            await _tcpClientService.DeleteRegisterAsync(registerId);
+
+            RefreshForm();
         }
     }
 }

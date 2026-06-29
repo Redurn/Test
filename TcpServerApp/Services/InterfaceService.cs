@@ -62,4 +62,9 @@ public class InterfaceService : IInterfaceService
         selectedInterface.Update(dto.Name, dto.Description);
         await _interfacesRepository.Update(selectedInterface);
     }
+
+    public async Task DeleteInterfaceAsync(Guid id)
+    {
+        await _interfacesRepository.Delete(id);
+    }
 }
